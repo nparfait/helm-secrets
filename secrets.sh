@@ -215,7 +215,7 @@ encrypt_helper() {
     [[ -e "$yml" ]] || { echo "File does not exist: $dir/$yml"; exit 1; }
     local ymldec=$(sed -e "s/\\.yaml$/${DEC_SUFFIX}/" <<<"$yml")
     [[ -e $ymldec ]] || ymldec="$yml"
-    
+
     if [[ $(grep -C10000 'sops:' "$ymldec" | grep -c 'version:') -gt 0 ]]
     then
 	echo "Already encrypted: $ymldec"
@@ -380,7 +380,7 @@ options='$options'
 longoptions='$longoptions'
 EOF
     fi
-    
+
     # parse command line
     local parsed # separate line, otherwise the return value of getopt is ignored
     # if parsing fails, getopt returns non-0, and the shell exits due to "set -e"
@@ -395,7 +395,7 @@ EOF
 	case "$1" in
 	    --)
 		# skip --, and what remains are the cmd args
-		shift 
+		shift
 		break
 		;;
             -f|--values)
@@ -483,7 +483,7 @@ case "${1:-help}" in
 	fi
 	clean "$2"
 	;;
-    install|upgrade|lint|diff)
+    install|upgrade|lint|diff|template)
 	helm_command "$@"
 	;;
     --help|-h|help)
